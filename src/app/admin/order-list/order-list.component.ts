@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  computed,
+  effect,
+  inject,
+  input,
+  signal,
+} from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -11,12 +21,13 @@ import { ButtonComponent } from '../../shared/ui';
  * Admin-Übersicht aller eingegangenen Bestellungen.
  *
  * Zeigt die Bestellungen neueste zuerst, getrennt in offene und erledigte.
- * Jede Bestellung listet Zeitpunkt, Linien (Menge × Titel, Stückpreis), die
- * optionale Notiz, das Total in Müntschis und den Push-/E-Mail-Status. Offene
- * Bestellungen lassen sich als erledigt markieren (und wieder öffnen).
+ * Offene Bestellungen lassen sich als erledigt markieren (und wieder öffnen).
  *
- * Standalone, OnPush. Liest reaktiv aus {@link OrderService.orders$} und
- * schreibt den Erledigt-Status über {@link OrderService.setDone}.
+ * Wird die Komponente über den Deep-Link `/admin/bstellige/:orderId` (z. B. aus
+ * einer Push-Benachrichtigung) geöffnet, wird die betroffene Bestellung
+ * hervorgehoben und ins Sichtfeld gescrollt.
+ *
+ * Standalone, OnPush.
  */
 @Component({
   selector: 'ptg-order-list',
@@ -26,8 +37,15 @@ import { ButtonComponent } from '../../shared/ui';
   templateUrl: './order-list.component.html',
   styleUrl: './order-list.component.scss',
 })
-export class OrderListComponent {
+export class OrderListComponent implements AfterViewInit {
   private readonly orderService = inject(OrderService);
+  private readonly host = inject(ElementRef<HTMLElement>);
+
+  /** Optionale Bestell-ID aus dem Deep-Link (`/admin/bstellige/:orderId`). */
+  readonly orderId = input<string | undefined>(undefined);
+
+  /** ID der hervorzuhebenden Bestellung (gesetzt via Deep-Link). */
+  readonly highlightId = computed(() => this.orderId() ?? null);
 
   /** Alle Bestellungen (neueste zuerst), reaktiv als Signal. */
   readonly orders = toSignal(this.orderService.orders$, { initialValue: undefined });
@@ -37,6 +55,38 @@ export class OrderListComponent {
 
   /** Bereits erledigte Bestellungen. */
   readonly doneOrders = computed(() => (this.orders() ?? []).filter((o) => o.done));
+
+  /** Verhindert wiederholtes Scrollen, wenn die Liste erneut emittiert. */
+  private readonly hasScrolled = signal(false);
+
+  constructor() {
+    // Sobald die Bestellungen geladen sind und ein Deep-Link-Ziel existiert,
+    // einmalig zur hervorgehobenen Bestellung scrollen.
+    effect(() => {
+      const target = this.highlightId();
+      const loaded = this.orders() !== undefined;
+      if (target && loaded && !this.hasScrolled()) {
+        this.hasScrolled.set(true);
+        // Nach dem Rendern scrollen.
+        setTimeout(() => this.scrollToTarget(target), 0);
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    const target = this.highlightId();
+    if (target && this.orders() !== undefined && !this.hasScrolled()) {
+      this.hasScrolled.set(true);
+      setTimeout(() => this.scrollToTarget(target), 0);
+    }
+  }
+
+  private scrollToTarget(id: string): void {
+    const el = this.host.nativeElement.querySelector(`[data-order-id="${id}"]`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
 
   /** Markiert eine Bestellung als erledigt bzw. wieder als offen. */
   async toggleDone(order: Order): Promise<void> {

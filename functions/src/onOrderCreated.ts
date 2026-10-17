@@ -60,7 +60,7 @@ export const onOrderCreated = onDocumentCreated(
       const tokenDoc = await db.doc("pushTokens/admin").get();
       const token = tokenDoc.exists ? (tokenDoc.get("token") as string) : null;
       if (token) {
-        await sendPush(token, buildPushPayload(order));
+        await sendPush(token, buildPushPayload(order, event.params.orderId));
         await snapshot.ref.update({ pushSent: true });
       }
       // Kein Token -> nichts tun, Bestellung bleibt gültig (Req 5.3).

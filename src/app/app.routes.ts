@@ -68,6 +68,15 @@ export const routes: Routes = [
           ),
       },
       {
+        // Deep-Link aus der Push-Benachrichtigung: dieselbe Übersicht, hebt
+        // die betroffene Bestellung hervor und scrollt zu ihr.
+        path: 'bstellige/:orderId',
+        loadComponent: () =>
+          import('./admin/order-list/order-list.component').then(
+            (m) => m.OrderListComponent,
+          ),
+      },
+      {
         path: 'kategorien',
         loadComponent: () =>
           import('./admin/category-admin/category-admin.component').then(

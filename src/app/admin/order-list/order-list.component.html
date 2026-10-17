@@ -15,7 +15,7 @@
       @if (openOrders().length > 0) {
         <ul class="orders__list">
           @for (order of openOrders(); track order.id) {
-            <li class="order">
+            <li class="order" [attr.data-order-id]="order.id" [class.order--highlight]="order.id === highlightId()">
               <div class="order__top">
                 <span class="order__date">
                   {{ order.createdAt?.toDate() | date: 'EEEE, d. MMMM y, HH:mm' }}
@@ -56,7 +56,7 @@
         </h2>
         <ul class="orders__list">
           @for (order of doneOrders(); track order.id) {
-            <li class="order order--done">
+            <li class="order order--done" [attr.data-order-id]="order.id" [class.order--highlight]="order.id === highlightId()">
               <div class="order__top">
                 <span class="order__date">
                   {{ order.createdAt?.toDate() | date: 'd. MMM y, HH:mm' }}

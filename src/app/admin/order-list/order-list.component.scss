@@ -183,3 +183,28 @@
 .order--done .order__total {
   color: var(--ptg-ink-soft);
 }
+
+// Aus der Push-Benachrichtigung verlinkte Bestellung kurz hervorheben.
+.order--highlight {
+  outline: 3px solid var(--ptg-rose);
+  outline-offset: 2px;
+  animation: ptg-order-pulse 1.6s ease-out 1;
+}
+
+@keyframes ptg-order-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(232, 87, 125, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(232, 87, 125, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(232, 87, 125, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .order--highlight {
+    animation: none;
+  }
+}
