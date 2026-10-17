@@ -1,0 +1,40 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{db}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'thomas.bomatter@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+
+    // Stammdaten: öffentlich lesbar, nur Admin schreibt
+    match /categories/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /items/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Bestellungen: öffentlich anlegen, nur Admin lesen; kein Update/Delete vom Client
+    match /orders/{id} {
+      allow create: if isValidOrder(request.resource.data);
+      allow read:   if isAdmin();
+      allow update, delete: if false; // nur Backend (Admin SDK) ändert Status
+    }
+
+    // Push-Token: nur Admin
+    match /pushTokens/{id} {
+      allow read, write: if isAdmin();
+    }
+
+    function isValidOrder(d) {
+      return d.total is int && d.total >= 0
+        && d.itemCount is int && d.itemCount >= 1
+        && d.lines is list
+        && (d.note == null || d.note is string);
+    }
+  }
+}

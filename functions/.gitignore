@@ -1,0 +1,14 @@
+## Compiled JavaScript files
+lib/
+node_modules/
+
+## TypeScript cache
+*.tsbuildinfo
+
+## Firebase cache
+.firebase/
+
+## Local environment / secrets
+*.local
+.env
+.runtimeconfig.json

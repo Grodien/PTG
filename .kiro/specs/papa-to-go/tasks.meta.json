@@ -1,0 +1,386 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Angular-Workspace scaffolden": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236990823
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792237001362
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792237340301
+      }
+    ],
+    "1.2 Firebase-Projekt per CLI anlegen und initialisieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991355
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792237343113
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792237565844
+      }
+    ],
+    "2.1 TypeScript-Interfaces für Kern-Datenmodelle erstellen": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991389
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792237571609
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792237850513
+      }
+    ],
+    "3.1 `formatMuentschi` implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991432
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792237856909
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238001069
+      }
+    ],
+    "3.3 `validateCost` und `validateItem` implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991456
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792237857838
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238187115
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238192386
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238272497
+      }
+    ],
+    "4.1 `CartService` implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991490
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792237859346
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238002043
+      }
+    ],
+    "5. Checkpoint — Reine Logik verifizieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991514
+      }
+    ],
+    "6.1 `CategoryService` (CRUD categories) implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991547
+      }
+    ],
+    "6.3 `ItemService` (CRUD items, Query nach categoryId) implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991577
+      }
+    ],
+    "6.7 `OrderService` (Checkout → Firestore) implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991599
+      }
+    ],
+    "7.1 `AuthService` und `adminGuard` implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991622
+      }
+    ],
+    "8. Checkpoint — Daten-Services & Auth verifizieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991643
+      }
+    ],
+    "9.1 `MuentschiPipe` und gemeinsame UI (Bestätigungsdialog) erstellen": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991667
+      }
+    ],
+    "9.2 `CategoryListComponent` implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991704
+      }
+    ],
+    "9.4 `ItemListComponent` und `ItemCardComponent` implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991725
+      }
+    ],
+    "9.6 `CartComponent` implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991747
+      }
+    ],
+    "9.7 `CheckoutComponent` implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991768
+      }
+    ],
+    "10.1 `LoginComponent` und `AdminShellComponent` implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991790
+      }
+    ],
+    "10.3 `CategoryAdminComponent` implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991809
+      }
+    ],
+    "10.5 `ItemAdminComponent` implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991834
+      }
+    ],
+    "10.6 `DeviceRegistrationComponent` und `MessagingService` implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991856
+      }
+    ],
+    "11.1 `app.routes.ts` und `app.config.ts` verdrahten": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991878
+      }
+    ],
+    "12. Checkpoint — Frontend verdrahtet": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991901
+      }
+    ],
+    "13.1 Security Rules implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991923
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792237860211
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238188064
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238191768
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238273180
+      }
+    ],
+    "14.1 Reine Builder `buildPushPayload` und `buildEmailBody` implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991958
+      }
+    ],
+    "14.5 FCM-Versand und Nodemailer-Transport implementieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236991985
+      }
+    ],
+    "14.6 `onOrderCreated`-Trigger implementieren und exportieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236992015
+      }
+    ],
+    "15.1 Service Worker für Background-Push erstellen": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236992037
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792237861014
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238002708
+      }
+    ],
+    "15.2 Seed-Skript für Basiskategorien erstellen": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236992057
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238007218
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238166488
+      }
+    ],
+    "16.1 Repo initialisieren und mit Remote verbinden": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236992080
+      },
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238276783
+      }
+    ],
+    "17.1 Build und Deploy ausführen": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236992103
+      }
+    ],
+    "18. Finaler Checkpoint — Alles verifizieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792236992125
+      }
+    ],
+    "1. Projekt- und Firebase-Grundgerüst aufsetzen": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792237565890
+      }
+    ],
+    "2. Datenmodelle definieren": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792237850559
+      }
+    ],
+    "4. Warenkorb-Logik (rein, Signals)": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238002091
+      }
+    ],
+    "15. Service Worker & Seed": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238166519
+      }
+    ],
+    "3. Reine Utility-Logik (Währung & Validierung)": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238272530
+      }
+    ],
+    "13. Firestore Security Rules": [
+      {
+        "executionId": "44bacf29-c64e-4eed-b80d-5a084957bf4a",
+        "chatSessionId": "sess_96eff7ab-f1ff-42d9-b587-6a74747f92ed",
+        "timestamp": 1792238273208
+      }
+    ]
+  }
+}

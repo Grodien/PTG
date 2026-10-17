@@ -1,0 +1,19 @@
+{
+  "name": "ptg-scripts",
+  "version": "1.0.0",
+  "description": "Admin-SDK maintenance scripts for PapaToGo (PTG) — e.g. seeding base categories.",
+  "private": true,
+  "scripts": {
+    "seed": "ts-node seed-categories.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "firebase-admin": "12.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.14.9",
+    "ts-node": "10.9.2",
+    "typescript": "5.5.2"
+  }
+}
