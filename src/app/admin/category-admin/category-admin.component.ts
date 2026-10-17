@@ -48,11 +48,15 @@ export class CategoryAdminComponent {
 
   /** Eingabewert des Anlege-Felds (gebunden via ngModel). */
   readonly newName = signal('');
+  /** Optionales Emoji-Icon für die neue Kategorie. */
+  readonly newIcon = signal('');
 
   /** ID der aktuell inline bearbeiteten Kategorie (oder `null`). */
   readonly editingId = signal<string | null>(null);
-  /** Zwischengespeicherter Name während des Umbenennens. */
+  /** Zwischengespeicherter Name während des Bearbeitens. */
   readonly editName = signal('');
+  /** Zwischengespeichertes Icon während des Bearbeitens. */
+  readonly editIcon = signal('');
 
   /**
    * Kategorie, deren Löschung (mit Artikeln) noch bestätigt werden muss.
@@ -73,8 +77,9 @@ export class CategoryAdminComponent {
     }
     this.busy.set(true);
     try {
-      await this.categoryService.create(name);
+      await this.categoryService.create(name, this.newIcon().trim());
       this.newName.set('');
+      this.newIcon.set('');
     } finally {
       this.busy.set(false);
     }
@@ -86,12 +91,14 @@ export class CategoryAdminComponent {
   startEdit(category: Category): void {
     this.editingId.set(category.id);
     this.editName.set(category.name);
+    this.editIcon.set(category.icon ?? '');
   }
 
   /** Bricht das Umbenennen ohne Speichern ab. */
   cancelEdit(): void {
     this.editingId.set(null);
     this.editName.set('');
+    this.editIcon.set('');
   }
 
   /** Speichert den geänderten Namen, sofern er nicht leer ist. */
@@ -100,10 +107,13 @@ export class CategoryAdminComponent {
     if (!name || this.busy()) {
       return;
     }
-    if (name !== category.name) {
+    const icon = this.editIcon().trim();
+    const nameChanged = name !== category.name;
+    const iconChanged = icon !== (category.icon ?? '');
+    if (nameChanged || iconChanged) {
       this.busy.set(true);
       try {
-        await this.categoryService.rename(category.id, name);
+        await this.categoryService.update(category.id, { name, icon });
       } finally {
         this.busy.set(false);
       }

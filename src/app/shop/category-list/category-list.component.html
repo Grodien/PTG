@@ -15,7 +15,7 @@
             [routerLink]="['/kategorie', category.id]"
             [attr.aria-label]="'Kategorie ' + category.name + ' öffne'"
           >
-            <span class="tile__emoji" aria-hidden="true">{{ emojiFor(category.name) }}</span>
+            <span class="tile__emoji" aria-hidden="true">{{ iconFor(category) }}</span>
             <span class="tile__name">{{ category.name }}</span>
           </a>
         </li>

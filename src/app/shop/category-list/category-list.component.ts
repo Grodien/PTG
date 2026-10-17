@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { Category } from '../../core/models';
 import { CategoryService } from '../../core/services/category.service';
 
 /**
@@ -30,14 +31,19 @@ export class CategoryListComponent {
   readonly categories = this.categoryService.categories;
 
   /**
-   * Verspielte Emoji-Verzierung je nach Kategoriename (Berner Charme).
+   * Liefert das anzuzeigende Icon einer Kategorie.
    *
-   * Rein kosmetisch: trifft der Name keinen bekannten Begriff, gibt es ein
-   * freundliches Standard-Herz. Die Zuordnung ist tolerant (Teilstring,
-   * case-insensitiv), damit Varianten wie "Snacks/Süsses" ebenfalls greifen.
+   * Bevorzugt das in der Datenbank gespeicherte Emoji (`category.icon`, im
+   * Admin frei wählbar). Fehlt es, wird anhand des Namens automatisch ein
+   * passendes Emoji gewählt – mit einem freundlichen Standard-Herz als
+   * letztem Fallback.
    */
-  emojiFor(name: string): string {
-    const n = name.toLowerCase();
+  iconFor(category: Category): string {
+    const custom = category.icon?.trim();
+    if (custom) {
+      return custom;
+    }
+    const n = category.name.toLowerCase();
     if (n.includes('esse')) return '🍽️';
     if (n.includes('trink')) return '🥤';
     if (n.includes('massage')) return '💆';

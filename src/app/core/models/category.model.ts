@@ -10,6 +10,11 @@ export interface Category {
   id: string;
   /** Anzeigename der Kategorie, z. B. "Massage". */
   name: string;
+  /**
+   * Optionales Emoji-Icon der Kategorie (z. B. "💆"). Fehlt es, wählt die
+   * Anzeige automatisch ein passendes Icon anhand des Namens.
+   */
+  icon?: string;
   /** Optionale Sortierreihenfolge; kleinere Werte zuerst. */
   order?: number;
   /** Zeitpunkt der Erstellung (Firestore-Timestamp). */

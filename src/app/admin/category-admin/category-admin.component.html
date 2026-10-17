@@ -12,6 +12,16 @@
   <!-- Anlegen (Req 8.1) -->
   <form class="cat-admin__add" (ngSubmit)="add()">
     <input
+      class="cat-admin__icon-input"
+      type="text"
+      name="newIcon"
+      placeholder="🙂"
+      aria-label="Emoji-Icon vo dr nöie Kategorie"
+      maxlength="4"
+      [ngModel]="newIcon()"
+      (ngModelChange)="newIcon.set($event)"
+    />
+    <input
       class="cat-admin__input"
       type="text"
       name="newCategory"
@@ -24,6 +34,11 @@
       Dezue
     </ptg-button>
   </form>
+  <p class="cat-admin__hint">
+    Tipp: S'Icon isch es Emoji. Uf em Handy chasch d'Emoji-Tastatur bruuche,
+    am Computer z. B. mit <kbd>⌃</kbd> + <kbd>⌘</kbd> + <kbd>Leertaschte</kbd>.
+    Lö's läär, de wähle mir automatisch eis zum Name.
+  </p>
 
   <!-- Liste (Req 8.2, 8.3) -->
   @if (categories().length === 0) {
@@ -35,7 +50,18 @@
       @for (category of categories(); track category.id) {
         <li class="cat-item">
           @if (editingId() === category.id) {
-            <!-- Inline-Umbenennen -->
+            <!-- Inline-Bearbeite (Icon + Name) -->
+            <input
+              class="cat-item__icon-edit"
+              type="text"
+              aria-label="Emoji-Icon vo dr Kategorie"
+              placeholder="🙂"
+              maxlength="4"
+              [ngModel]="editIcon()"
+              (ngModelChange)="editIcon.set($event)"
+              (keyup.enter)="saveEdit(category)"
+              (keyup.escape)="cancelEdit()"
+            />
             <input
               class="cat-item__edit"
               type="text"
@@ -57,7 +83,12 @@
               </ptg-button>
             </div>
           } @else {
-            <span class="cat-item__name">{{ category.name }}</span>
+            <span class="cat-item__name">
+              @if (category.icon) {
+                <span class="cat-item__icon" aria-hidden="true">{{ category.icon }}</span>
+              }
+              {{ category.name }}
+            </span>
             <div class="cat-item__actions">
               <ptg-button
                 variant="ghost"

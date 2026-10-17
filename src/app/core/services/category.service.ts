@@ -63,9 +63,10 @@ export class CategoryService {
    * @param name Anzeigename der Kategorie.
    * @returns Die ID des neu erstellten Dokuments.
    */
-  async create(name: string): Promise<string> {
+  async create(name: string, icon?: string): Promise<string> {
     const ref = await addDoc(this.categoriesRef, {
       name,
+      icon: icon?.trim() || '',
       order: Date.now(),
       createdAt: serverTimestamp(),
     } as Partial<Category>);
@@ -73,14 +74,30 @@ export class CategoryService {
   }
 
   /**
-   * Benennt eine bestehende Kategorie um (aktualisiert nur das Feld `name`).
+   * Aktualisiert Name und optionales Icon einer bestehenden Kategorie.
+   *
+   * @param id Dokument-ID der Kategorie.
+   * @param changes Zu ändernde Felder (`name` und/oder `icon`).
+   */
+  async update(
+    id: string,
+    changes: { name?: string; icon?: string },
+  ): Promise<void> {
+    const ref = doc(this.firestore, CATEGORIES_COLLECTION, id);
+    const patch: Partial<Category> = {};
+    if (changes.name !== undefined) patch.name = changes.name.trim();
+    if (changes.icon !== undefined) patch.icon = changes.icon.trim();
+    await updateDoc(ref, patch);
+  }
+
+  /**
+   * Benennt eine bestehende Kategorie um (Komfort-Wrapper um {@link update}).
    *
    * @param id Dokument-ID der Kategorie.
    * @param name Neuer Anzeigename.
    */
   async rename(id: string, name: string): Promise<void> {
-    const ref = doc(this.firestore, CATEGORIES_COLLECTION, id);
-    await updateDoc(ref, { name });
+    await this.update(id, { name });
   }
 
   /**
