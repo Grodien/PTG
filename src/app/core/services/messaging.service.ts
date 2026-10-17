@@ -2,16 +2,9 @@ import { Injectable, inject } from '@angular/core';
 import { Firestore, doc, serverTimestamp, setDoc } from '@angular/fire/firestore';
 import { Messaging, getToken, isSupported } from '@angular/fire/messaging';
 
-/**
- * VAPID-Public-Key (Web-Push) des Firebase-Projekts.
- *
- * TODO: PLATZHALTER — mit dem echten VAPID-Key aus der Firebase Console
- * ersetzen (Project Settings → Cloud Messaging → Web Push certificates →
- * "Key pair"). Wird erst beim Deployment / in Task 11.1 mit dem realen Wert
- * befüllt, sobald das Firebase-Projekt existiert. Ohne gültigen Key schlägt
- * `getToken` zur Laufzeit fehl; der Build ist davon nicht betroffen.
- */
-const VAPID_KEY = 'TODO_VAPID_KEY';
+/** VAPID-Public-Key (Web-Push) des Firebase-Projekts (Cloud Messaging). */
+const VAPID_KEY =
+  'BPzcnwYO2hXXkX1Zeq8Bxpz-z56nuDkuw07vPwyaHPUAmGGg8TEejLJB7VB4MMiBafwdTWdIUcSNUXPLg66fSI4';
 
 /**
  * Pfad des einzelnen, fest benannten Push-Token-Dokuments des Admin-Geräts.

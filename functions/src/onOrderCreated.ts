@@ -42,6 +42,7 @@ const SMTP_PASS = defineSecret("SMTP_PASS");
 export const onOrderCreated = onDocumentCreated(
   {
     document: "orders/{orderId}",
+    region: "europe-west1",
     secrets: [SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS],
   },
   async (event) => {
