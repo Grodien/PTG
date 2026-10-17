@@ -8,8 +8,16 @@
     <a routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">
       Lädeli
     </a>
-    <a routerLink="/warenkorb" routerLinkActive="is-active">
+    <a
+      class="app-header__cart"
+      routerLink="/warenkorb"
+      routerLinkActive="is-active"
+      [attr.aria-label]="'Warenkorb, ' + cartCount() + ' Artikel'"
+    >
       Warächorb 🛒
+      @if (cartCount() > 0) {
+        <span class="app-header__badge" aria-hidden="true">{{ cartCount() }}</span>
+      }
     </a>
   </nav>
 </header>

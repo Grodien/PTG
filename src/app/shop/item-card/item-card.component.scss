@@ -6,14 +6,19 @@
   --ptg-cream: #fff7f3;
   --ptg-shadow: rgba(232, 87, 125, 0.18);
 
-  display: block;
+  // Als Grid-Zelle voll ausfüllen, damit sich Karten nicht überlappen.
+  display: flex;
+  height: 100%;
+  min-width: 0;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  width: 100%;
   height: 100%;
+  box-sizing: border-box;
   padding: 1.2rem 1.3rem;
   background: var(--ptg-cream);
   border-radius: 1.1rem;
@@ -57,5 +62,34 @@
 @media (prefers-reduced-motion: reduce) {
   .card {
     transition: none;
+  }
+}
+
+.card__feedback {
+  align-self: flex-start;
+  margin-top: 0.2rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(232, 87, 125, 0.12);
+  color: var(--ptg-rose);
+  font-size: 0.85rem;
+  font-weight: 600;
+  animation: ptg-feedback-in 180ms ease-out;
+}
+
+@keyframes ptg-feedback-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card__feedback {
+    animation: none;
   }
 }

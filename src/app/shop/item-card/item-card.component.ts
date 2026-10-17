@@ -3,7 +3,9 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   Output,
+  signal,
 } from '@angular/core';
 
 import { Item } from '../../core/models';
@@ -15,15 +17,10 @@ import { ButtonComponent } from '../../shared/ui';
  * (Req 11.1): Titel, Beschreibung und Kosten in Müntschis (via
  * {@link MuentschiPipe}, Req 2.1, 2.2).
  *
- * Die Aktion "In den Warenkorb" (Req 3.1) wird bewusst als {@link addToCart}
- * nach aussen gereicht, damit die Karte frei von Service-Abhängigkeiten bleibt
- * und isoliert getestet werden kann. Die {@link ItemListComponent} verdrahtet
- * das Event mit `CartService.add`.
- *
- * Verwendung:
- * ```html
- * <ptg-item-card [item]="item" (addToCart)="cart.add($event)" />
- * ```
+ * Die Aktion "In den Warenkorb" (Req 3.1) wird als {@link addToCart} nach aussen
+ * gereicht, damit die Karte frei von Service-Abhängigkeiten bleibt. Nach dem
+ * Klick zeigt die Karte kurz eine Bestätigung ("Zuegfüegt ✓") als direktes
+ * visuelles Feedback.
  */
 @Component({
   selector: 'ptg-item-card',
@@ -40,18 +37,50 @@ import { ButtonComponent } from '../../shared/ui';
 
       <div class="card__footer">
         <span class="card__cost">{{ item.cost | muentschi }}</span>
-        <ptg-button (click)="addToCart.emit(item)">
-          In Warächorb
+        <ptg-button (click)="onAdd()">
+          @if (justAdded()) {
+            Zuegfüegt ✓
+          } @else {
+            In Warächorb
+          }
         </ptg-button>
       </div>
+
+      <!-- Kurzes, dezentes Feedback nach dem Hinzufügen -->
+      @if (justAdded()) {
+        <span class="card__feedback" role="status" aria-live="polite">
+          Im Warächorb glandet! 💕
+        </span>
+      }
     </article>
   `,
   styleUrl: './item-card.component.scss',
 })
-export class ItemCardComponent {
+export class ItemCardComponent implements OnDestroy {
   /** Der darzustellende Artikel. Pflicht-Input. */
   @Input({ required: true }) item!: Item;
 
   /** Ausgelöst, wenn die Besucherin den Artikel in den Warenkorb legt (Req 3.1). */
   @Output() addToCart = new EventEmitter<Item>();
+
+  /** Zeigt für kurze Zeit die Hinzufügen-Bestätigung an. */
+  readonly justAdded = signal(false);
+
+  private resetTimer: ReturnType<typeof setTimeout> | null = null;
+
+  /** Emittiert das Hinzufügen und blendet kurz ein Feedback ein. */
+  onAdd(): void {
+    this.addToCart.emit(this.item);
+    this.justAdded.set(true);
+    if (this.resetTimer) {
+      clearTimeout(this.resetTimer);
+    }
+    this.resetTimer = setTimeout(() => this.justAdded.set(false), 1600);
+  }
+
+  ngOnDestroy(): void {
+    if (this.resetTimer) {
+      clearTimeout(this.resetTimer);
+    }
+  }
 }
