@@ -8,13 +8,21 @@
     <a routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">
       Lädeli
     </a>
+
+    @if (isAdmin()) {
+      <a routerLink="/admin" routerLinkActive="is-active" class="app-header__admin-link">
+        🛠️ Admin
+      </a>
+    }
+
     <a
       class="app-header__cart"
       routerLink="/warenkorb"
       routerLinkActive="is-active"
       [attr.aria-label]="'Warenkorb, ' + cartCount() + ' Artikel'"
     >
-      Warächorb 🛒
+      <span class="app-header__cart-icon" aria-hidden="true">🛒</span>
+      <span class="app-header__cart-label">Warächorb</span>
       @if (cartCount() > 0) {
         <span class="app-header__badge" aria-hidden="true">{{ cartCount() }}</span>
       }
@@ -28,7 +36,9 @@
 
 <footer class="app-footer">
   <span class="app-footer__note">Mit ❤️ gmacht · zahlbar i Müntschis</span>
-  <a class="app-footer__admin" routerLink="/admin" aria-label="Admin-Bereich">
-    Admin
-  </a>
+  @if (!isAdmin()) {
+    <a class="app-footer__admin" routerLink="/admin" aria-label="Admin-Bereich">
+      Admin
+    </a>
+  }
 </footer>

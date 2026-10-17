@@ -1,13 +1,49 @@
 // Warm-verspielte PTG-Optik (Req 11.1) – component-scoped.
 
 :host {
+  --ptg-rose: #e8577d;
+  --ptg-rose-dark: #c23b60;
   --ptg-ink: #3a2c33;
 
   display: block;
 }
 
 .item-list {
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
+}
+
+.item-list__bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.item-list__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  align-self: flex-start;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(232, 87, 125, 0.1);
+  color: var(--ptg-rose-dark);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(232, 87, 125, 0.2);
+  }
+}
+
+.item-list__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--ptg-rose-dark);
 }
 
 .item-list__grid {
