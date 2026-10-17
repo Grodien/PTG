@@ -62,9 +62,16 @@
 }
 
 .app-main {
-  padding: 1.5rem 1.25rem 3rem;
+  // Schmaleres Seiten-Padding auf dem Handy, grosszügiger ab Tablet.
+  padding: 1.25rem 0.85rem 2.5rem;
   max-width: 960px;
   margin-inline: auto;
+}
+
+@media (min-width: 40rem) {
+  .app-main {
+    padding: 1.5rem 1.25rem 3rem;
+  }
 }
 
 .app-footer {

@@ -1,5 +1,4 @@
-// Warm-verspielte PTG-Optik (Req 11.1) – component-scoped, konsistent mit
-// der Palette aus shared/ui (Beeren-Rose, warme Tinte).
+// Warm-verspielte PTG-Optik (Req 11.1) – component-scoped, mobile-first.
 
 :host {
   --ptg-rose: #e8577d;
@@ -14,13 +13,14 @@
 .cart {
   max-width: 34rem;
   margin: 0 auto;
-  padding: 1.5rem;
+  // Weniger seitliches Padding, da die App-Hülle bereits Rand hat.
+  padding: 0.25rem 0 1rem;
   color: var(--ptg-ink);
 }
 
 .cart__heading {
   margin: 0 0 1.25rem;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 
@@ -41,12 +41,13 @@
   gap: 0.75rem;
 }
 
+// Mobile-first: Titel steht voll lesbar oben, darunter eine Zeile mit
+// Menge/Preis links und dem Entfernen-Button rechts.
 .line {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.9rem 1.1rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.9rem 1rem;
   background: var(--ptg-card);
   border-radius: 1rem;
   box-shadow: 0 0.3rem 0.8rem rgba(58, 44, 51, 0.08);
@@ -55,12 +56,14 @@
 .line__info {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.15rem;
   min-width: 0;
 }
 
 .line__title {
   font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.3;
   overflow-wrap: anywhere;
 }
 
@@ -72,8 +75,8 @@
 .line__right {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.75rem;
-  flex-shrink: 0;
 }
 
 .line__sum {
@@ -82,11 +85,26 @@
   white-space: nowrap;
 }
 
+// Ab Tablet/Desktop: kompaktere Zeile mit Titel links, Preis/Aktion rechts.
+@media (min-width: 30rem) {
+  .line {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .line__right {
+    flex-shrink: 0;
+    justify-content: flex-end;
+  }
+}
+
 .cart__total {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  padding: 0.9rem 1.1rem;
+  padding: 0.9rem 1rem;
   margin-bottom: 1.5rem;
   border-top: 2px dashed rgba(232, 87, 125, 0.35);
 }
@@ -112,7 +130,9 @@
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  padding: 0.8rem 1.8rem;
+  width: 100%;
+  max-width: 20rem;
+  padding: 0.85rem 1.8rem;
   font-weight: 700;
   text-decoration: none;
   border-radius: 999px;
