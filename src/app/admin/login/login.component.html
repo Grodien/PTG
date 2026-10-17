@@ -1,0 +1,40 @@
+<section class="login">
+  <header class="hero">
+    <h1 class="hero__title">Admin-Stübli 🔐</h1>
+    <p class="hero__subtitle">
+      Nume dr Papa darf da ine – meld di churz mit Google aa.
+    </p>
+  </header>
+
+  @if (user() && !isAdmin()) {
+    <div class="card card--denied" role="alert">
+      <span class="card__emoji" aria-hidden="true">🚫</span>
+      <h2 class="card__title">Kei Zuegang, sorry!</h2>
+      <p class="card__text">
+        Du bisch als <strong>{{ user()?.email }}</strong> aagmäldet, aber das
+        Stübli ghört em Papa. Wenn du di möchtsch nomal mit em richtige Konto
+        aamälde, lueg di zersch us.
+      </p>
+      <ptg-button variant="ghost" (click)="logout()">Uslogge</ptg-button>
+    </div>
+  } @else {
+    <div class="card">
+      <span class="card__emoji" aria-hidden="true">💝</span>
+      <p class="card__text">
+        Mit em Google-Login chunnsch i ds Verwaltigs-Stübli für Kategorie,
+        Artikel u ds Handy-Aamälde.
+      </p>
+      <ptg-button [disabled]="busy()" (click)="login()">
+        @if (busy()) {
+          Momänt… ⏳
+        } @else {
+          Mit Google aalogge
+        }
+      </ptg-button>
+
+      @if (errorMessage(); as message) {
+        <p class="card__error" role="alert">{{ message }}</p>
+      }
+    </div>
+  }
+</section>

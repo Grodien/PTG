@@ -1,0 +1,97 @@
+// Warm-verspielte PTG-Optik (Req 11.1) – Beeren/Pfirsich-Palette,
+// component-scoped, passend zur Button-/Dialog-Optik.
+
+:host {
+  --ptg-rose: #e8577d;
+  --ptg-rose-dark: #c23b60;
+  --ptg-peach: #ffd9c7;
+  --ptg-peach-soft: #fff3ec;
+  --ptg-ink: #3a2c33;
+  --ptg-ink-soft: #6b5560;
+
+  display: block;
+}
+
+.category-list {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  &__title {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    color: var(--ptg-rose-dark);
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--ptg-ink-soft);
+  }
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 9rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--ptg-ink);
+  background: linear-gradient(160deg, var(--ptg-peach-soft), var(--ptg-peach));
+  border-radius: 1.25rem;
+  box-shadow: 0 0.5rem 1.2rem rgba(232, 87, 125, 0.18);
+  transition: transform 140ms ease, box-shadow 140ms ease;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 0.8rem 1.6rem rgba(232, 87, 125, 0.3);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--ptg-rose);
+    outline-offset: 3px;
+  }
+
+  &__emoji {
+    font-size: 2.4rem;
+    line-height: 1;
+  }
+
+  &__name {
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+}
+
+.empty {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--ptg-ink-soft);
+  padding: 2.5rem 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile {
+    transition: none;
+  }
+}

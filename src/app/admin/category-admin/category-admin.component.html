@@ -1,0 +1,94 @@
+<section class="cat-admin">
+  <header class="cat-admin__head">
+    <span class="cat-admin__emoji" aria-hidden="true">🗂️</span>
+    <div>
+      <h1 class="cat-admin__title">Kategorie verwalte</h1>
+      <p class="cat-admin__subtitle">
+        Hie chasch Kategorie azlege, umbenenne oder wägräume.
+      </p>
+    </div>
+  </header>
+
+  <!-- Anlegen (Req 8.1) -->
+  <form class="cat-admin__add" (ngSubmit)="add()">
+    <input
+      class="cat-admin__input"
+      type="text"
+      name="newCategory"
+      placeholder="Nöii Kategorie, z. B. «Massage»"
+      aria-label="Name vo dr nöie Kategorie"
+      [ngModel]="newName()"
+      (ngModelChange)="newName.set($event)"
+    />
+    <ptg-button type="submit" [disabled]="!newName().trim() || busy()">
+      Dezue
+    </ptg-button>
+  </form>
+
+  <!-- Liste (Req 8.2, 8.3) -->
+  @if (categories().length === 0) {
+    <p class="cat-admin__empty">
+      No kener Kategorie da – fang doch grad mit ere a! 🌱
+    </p>
+  } @else {
+    <ul class="cat-admin__list">
+      @for (category of categories(); track category.id) {
+        <li class="cat-item">
+          @if (editingId() === category.id) {
+            <!-- Inline-Umbenennen -->
+            <input
+              class="cat-item__edit"
+              type="text"
+              aria-label="Nöie Name vo dr Kategorie"
+              [ngModel]="editName()"
+              (ngModelChange)="editName.set($event)"
+              (keyup.enter)="saveEdit(category)"
+              (keyup.escape)="cancelEdit()"
+            />
+            <div class="cat-item__actions">
+              <ptg-button
+                [disabled]="!editName().trim() || busy()"
+                (click)="saveEdit(category)"
+              >
+                Speichere
+              </ptg-button>
+              <ptg-button variant="ghost" (click)="cancelEdit()">
+                Abbräche
+              </ptg-button>
+            </div>
+          } @else {
+            <span class="cat-item__name">{{ category.name }}</span>
+            <div class="cat-item__actions">
+              <ptg-button
+                variant="ghost"
+                [disabled]="busy()"
+                (click)="startEdit(category)"
+              >
+                Umbenenne
+              </ptg-button>
+              <ptg-button
+                variant="ghost"
+                [disabled]="busy()"
+                (click)="requestDelete(category)"
+              >
+                Lösche
+              </ptg-button>
+            </div>
+          }
+        </li>
+      }
+    </ul>
+  }
+</section>
+
+<!-- Kaskaden-Bestätigung (Req 8.4) -->
+@if (pendingDelete(); as cat) {
+  <ptg-confirm-dialog
+    title="Kategorie «{{ cat.name }}» lösche?"
+    message="Zu där Kategorie ghöre no Artikel. Wenn du löschsch, chöme d'Kategorie UND all ihri Artikel wäg – das cha me nid rückgängig mache."
+    confirmLabel="Ja, alles lösche"
+    cancelLabel="Doch nid"
+    (confirm)="confirmCascadeDelete()"
+    (cancel)="cancelCascadeDelete()"
+  />
+}

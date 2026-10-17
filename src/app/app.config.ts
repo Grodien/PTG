@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -17,18 +17,18 @@ import { routes } from './app.routes';
  * blockieren.
  */
 export const firebaseConfig = {
-  apiKey: 'TODO_API_KEY',
-  authDomain: 'TODO.firebaseapp.com',
-  projectId: 'TODO_PROJECT_ID',
-  storageBucket: 'TODO.appspot.com',
-  messagingSenderId: 'TODO_SENDER_ID',
-  appId: 'TODO_APP_ID',
+  apiKey: 'AIzaSyD2lv2myn6degZKTPsXey-wZV0pP0u_AA8',
+  authDomain: 'ptg-papa-to-go.firebaseapp.com',
+  projectId: 'ptg-papa-to-go',
+  storageBucket: 'ptg-papa-to-go.firebasestorage.app',
+  messagingSenderId: '136510299124',
+  appId: '1:136510299124:web:b8fe5b29e61f3133cdb7a1',
 };
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding()),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),

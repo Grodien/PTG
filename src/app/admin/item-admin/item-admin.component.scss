@@ -1,0 +1,190 @@
+// Warm-verspielte PTG-Optik (Req 11.1) – Beeren/Pfirsich-Palette,
+// component-scoped, passend zur Button-/Shell-Optik des Admin-Bereichs.
+
+:host {
+  --ptg-rose: #e8577d;
+  --ptg-rose-dark: #c23b60;
+  --ptg-peach: #ffd9c7;
+  --ptg-cream: #fff6f1;
+  --ptg-blush: #ffe3ec;
+  --ptg-ink: #3a2c33;
+  --ptg-ink-soft: #6b5560;
+
+  display: block;
+}
+
+.item-admin {
+  max-width: 44rem;
+  margin: 0 auto;
+  color: var(--ptg-ink);
+}
+
+.item-admin__header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.item-admin__emoji {
+  display: block;
+  font-size: 2.2rem;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.item-admin__title {
+  margin: 0 0 0.3rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--ptg-rose-dark);
+}
+
+.item-admin__subtitle {
+  margin: 0;
+  color: var(--ptg-ink-soft);
+}
+
+.item-admin__picker {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.item-admin__label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.item-admin__select,
+.item-admin__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.7rem 0.9rem;
+  font: inherit;
+  color: inherit;
+  border: 2px solid rgba(58, 44, 51, 0.12);
+  border-radius: 0.8rem;
+  background: #fff;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+
+  &::placeholder {
+    color: rgba(58, 44, 51, 0.45);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--ptg-rose);
+    box-shadow: 0 0 0 3px rgba(232, 87, 125, 0.18);
+  }
+}
+
+.item-admin__input--invalid {
+  border-color: #d94a4a;
+
+  &:focus {
+    border-color: #d94a4a;
+    box-shadow: 0 0 0 3px rgba(217, 74, 74, 0.2);
+  }
+}
+
+.item-admin__textarea {
+  resize: vertical;
+}
+
+.item-admin__form {
+  padding: 1.5rem;
+  margin-bottom: 1.75rem;
+  background: var(--ptg-cream);
+  border-radius: 1.25rem;
+  box-shadow: 0 0.6rem 1.6rem rgba(232, 87, 125, 0.18);
+}
+
+.item-admin__form-title {
+  margin: 0 0 1.1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.item-admin__field {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.item-admin__hint {
+  display: block;
+  margin-top: 0.4rem;
+  color: #a12626;
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+
+.item-admin__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.item-admin__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.item-admin__card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.2rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: inset 0 0 0 1px rgba(58, 44, 51, 0.06),
+    0 0.3rem 0.8rem rgba(232, 87, 125, 0.08);
+}
+
+.item-admin__card-main {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+
+.item-admin__card-title {
+  margin: 0 0 0.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.item-admin__card-desc {
+  margin: 0 0 0.35rem;
+  color: var(--ptg-ink-soft);
+}
+
+.item-admin__card-cost {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: var(--ptg-blush);
+  color: var(--ptg-rose-dark);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.item-admin__card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.item-admin__empty {
+  padding: 1.25rem;
+  text-align: center;
+  color: var(--ptg-ink-soft);
+  background: var(--ptg-cream);
+  border-radius: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item-admin__select,
+  .item-admin__input {
+    transition: none;
+  }
+}

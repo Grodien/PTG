@@ -1,0 +1,27 @@
+// Warm-verspielte PTG-Optik (Req 11.1) – component-scoped.
+
+:host {
+  --ptg-ink: #3a2c33;
+
+  display: block;
+}
+
+.item-list {
+  padding: 0.5rem 0;
+}
+
+.item-list__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+
+.item-list__empty,
+.item-list__loading {
+  margin: 2rem auto;
+  max-width: 32rem;
+  text-align: center;
+  color: rgba(58, 44, 51, 0.75);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}

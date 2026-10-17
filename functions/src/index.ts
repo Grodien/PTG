@@ -9,4 +9,4 @@ import { initializeApp } from "firebase-admin/app";
 
 initializeApp();
 
-// Trigger-Exporte folgen in Task 14 (z. B. export { onOrderCreated } from "./onOrderCreated";)
+export { onOrderCreated } from "./onOrderCreated";

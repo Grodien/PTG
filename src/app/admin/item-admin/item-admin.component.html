@@ -1,0 +1,142 @@
+<section class="item-admin">
+  <header class="item-admin__header">
+    <span class="item-admin__emoji" aria-hidden="true">🎁</span>
+    <h2 class="item-admin__title">Artikel verwalte</h2>
+    <p class="item-admin__subtitle">
+      Wähl e Kategorie us und leg nöii Sache a, bearbeit sie oder schmeiss sie
+      use.
+    </p>
+  </header>
+
+  <!-- Kategorie-Auswahl (Req 9.1 – Artikel entsteht unter der gewählten Kategorie) -->
+  <label class="item-admin__picker">
+    <span class="item-admin__label">Kategorie</span>
+    <select
+      class="item-admin__select"
+      [value]="selectedCategoryId()"
+      (change)="onCategoryChange($event)"
+    >
+      <option value="">– Bitte e Kategorie uswähle –</option>
+      @for (category of categories(); track category.id) {
+        <option [value]="category.id">{{ category.name }}</option>
+      }
+    </select>
+  </label>
+
+  @if (hasCategory()) {
+    <!-- Formular zum Anlege/Bearbeite (Req 9.1, 9.2) -->
+    <form class="item-admin__form" (ngSubmit)="save()">
+      <h3 class="item-admin__form-title">
+        @if (mode() === 'edit') {
+          Artikel bearbeite
+        } @else {
+          Nöie Artikel aaleege
+        }
+      </h3>
+
+      <label class="item-admin__field">
+        <span class="item-admin__label">Titel</span>
+        <input
+          class="item-admin__input"
+          type="text"
+          [class.item-admin__input--invalid]="!!errors().title"
+          [value]="title()"
+          (input)="onTitleInput($event)"
+          placeholder="z. B. Rückemassage"
+          [attr.aria-invalid]="!!errors().title"
+        />
+        @if (errors().title) {
+          <span class="item-admin__hint" role="alert">
+            🙈 {{ errors().title }}
+          </span>
+        }
+      </label>
+
+      <label class="item-admin__field">
+        <span class="item-admin__label">Beschribig (optional)</span>
+        <textarea
+          class="item-admin__input item-admin__textarea"
+          rows="2"
+          [value]="description()"
+          (input)="onDescriptionInput($event)"
+          placeholder="Was gits bi däm Artikel?"
+        ></textarea>
+      </label>
+
+      <label class="item-admin__field">
+        <span class="item-admin__label">Chöschte (Müntschis)</span>
+        <input
+          class="item-admin__input"
+          type="number"
+          min="0"
+          step="1"
+          inputmode="numeric"
+          [class.item-admin__input--invalid]="!!errors().cost"
+          [value]="costInput()"
+          (input)="onCostInput($event)"
+          placeholder="z. B. 3"
+          [attr.aria-invalid]="!!errors().cost"
+        />
+        @if (errors().cost) {
+          <span class="item-admin__hint" role="alert">
+            🙈 {{ errors().cost }}
+          </span>
+        }
+      </label>
+
+      <div class="item-admin__actions">
+        @if (mode() === 'edit') {
+          <ptg-button type="button" variant="ghost" (click)="cancelEdit()">
+            Abbräche
+          </ptg-button>
+        }
+        <ptg-button type="submit">
+          @if (mode() === 'edit') {
+            Speichere
+          } @else {
+            Aaleege
+          }
+        </ptg-button>
+      </div>
+    </form>
+
+    <!-- Artikelliste der gewählten Kategorie -->
+    <div class="item-admin__list">
+      @if (items().length > 0) {
+        @for (item of items(); track item.id) {
+          <article class="item-admin__card">
+            <div class="item-admin__card-main">
+              <h4 class="item-admin__card-title">{{ item.title }}</h4>
+              @if (item.description) {
+                <p class="item-admin__card-desc">{{ item.description }}</p>
+              }
+              <span class="item-admin__card-cost">
+                {{ item.cost | muentschi }}
+              </span>
+            </div>
+            <div class="item-admin__card-actions">
+              <ptg-button
+                type="button"
+                variant="ghost"
+                (click)="startEdit(item)"
+              >
+                Bearbeite
+              </ptg-button>
+              <ptg-button type="button" variant="ghost" (click)="delete(item)">
+                Lösche
+              </ptg-button>
+            </div>
+          </article>
+        }
+      } @else {
+        <p class="item-admin__empty">
+          Hie het's no kener Artikel – leg doch grad der erscht a! 💕
+        </p>
+      }
+    </div>
+  } @else {
+    <p class="item-admin__empty">
+      Wähl zerscht e Kategorie, denn chasch Artikel verwalte.
+    </p>
+  }
+</section>

@@ -1,0 +1,110 @@
+// Warm-verspielte PTG-Optik (Req 11.1) – Beeren/Pfirsich-Palette,
+// component-scoped, passend zur Button-/Kachel-Optik des Shops.
+
+:host {
+  --ptg-rose: #e8577d;
+  --ptg-rose-dark: #c23b60;
+  --ptg-peach: #ffd9c7;
+  --ptg-peach-soft: #fff3ec;
+  --ptg-ink: #3a2c33;
+  --ptg-ink-soft: #6b5560;
+
+  display: block;
+}
+
+.shell {
+  min-height: 100vh;
+  background: var(--ptg-peach-soft);
+}
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  background: linear-gradient(120deg, var(--ptg-rose), var(--ptg-rose-dark));
+  color: #fff;
+  box-shadow: 0 0.3rem 0.9rem rgba(232, 87, 125, 0.3);
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__emoji {
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  &__title {
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__email {
+    font-size: 0.95rem;
+    opacity: 0.95;
+    max-width: 16rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.85rem 1.25rem;
+  background: #fff;
+  border-bottom: 2px solid rgba(232, 87, 125, 0.12);
+}
+
+.nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--ptg-ink);
+  background: var(--ptg-peach-soft);
+  transition: background 120ms ease, color 120ms ease;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--ptg-peach);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--ptg-rose);
+    outline-offset: 2px;
+  }
+
+  &--active {
+    background: var(--ptg-rose);
+    color: #fff;
+  }
+}
+
+.content {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem 3rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__link {
+    transition: none;
+  }
+}

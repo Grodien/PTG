@@ -1,0 +1,29 @@
+<section class="category-list">
+  <header class="hero">
+    <h1 class="hero__title">Was darfs hüt sii? 💝</h1>
+    <p class="hero__subtitle">
+      Wähl e Kategorie us – alles git&#8217;s gäge es paar liebi Müntschis.
+    </p>
+  </header>
+
+  @if (categories().length > 0) {
+    <ul class="grid" role="list">
+      @for (category of categories(); track category.id) {
+        <li class="grid__item">
+          <a
+            class="tile"
+            [routerLink]="['/kategorie', category.id]"
+            [attr.aria-label]="'Kategorie ' + category.name + ' öffne'"
+          >
+            <span class="tile__emoji" aria-hidden="true">{{ emojiFor(category.name) }}</span>
+            <span class="tile__name">{{ category.name }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="empty">
+      Momentan git&#8217;s no kener Kategorie – lueg schpöter nomal verbii! 🌸
+    </p>
+  }
+</section>

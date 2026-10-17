@@ -1,0 +1,55 @@
+<section class="device">
+  <header class="hero">
+    <h1 class="hero__title">Handy aamälde 📱</h1>
+    <p class="hero__subtitle">
+      Mäld di Papa-Handy a, de chunnt bi jedere neue Bestellig grad e Push.
+    </p>
+  </header>
+
+  <div class="card">
+    <span class="card__emoji" aria-hidden="true">🔔</span>
+    <p class="card__text">
+      Drück uf de Chnopf, de frage mir churz nach dr Bewilligung für
+      Benachrichtigunge u merke üs das Gerät.
+    </p>
+
+    <ptg-button [disabled]="busy()" (click)="register()">
+      @if (busy()) {
+        Momänt… ⏳
+      } @else {
+        Das Gerät registriere
+      }
+    </ptg-button>
+
+    @switch (status()) {
+      @case ('granted') {
+        <p class="card__hint card__hint--ok" role="status">
+          <span aria-hidden="true">✅</span>
+          Juhui, ds Gerät isch registriert! Ab jetz chunnt bi jedere Bestellig e
+          Push uf das Handy.
+        </p>
+      }
+      @case ('denied') {
+        <p class="card__hint card__hint--warn" role="alert">
+          <span aria-hidden="true">🚫</span>
+          Ohni Bewilligung chöi mir der kener Push schicke. Wenn du doch
+          Benachrichtigunge wosch, erlaub si i de Browser-Istellige u probier's
+          nomal.
+        </p>
+      }
+      @case ('unsupported') {
+        <p class="card__hint card__hint--warn" role="alert">
+          <span aria-hidden="true">😕</span>
+          Dä Browser oder das Gerät cha leider kei Push. Probier's mit emene
+          andere Browser oder Gerät.
+        </p>
+      }
+      @case ('error') {
+        <p class="card__hint card__hint--warn" role="alert">
+          <span aria-hidden="true">💥</span>
+          Hoppla, öppis isch schiefgange. Probier's doch grad nomal. 🌸
+        </p>
+      }
+    }
+  </div>
+</section>

@@ -1,0 +1,61 @@
+// Warm-verspielte PTG-Optik (Req 11.1) – component-scoped, konsistent mit shared/ui.
+
+:host {
+  --ptg-rose: #e8577d;
+  --ptg-ink: #3a2c33;
+  --ptg-cream: #fff7f3;
+  --ptg-shadow: rgba(232, 87, 125, 0.18);
+
+  display: block;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  height: 100%;
+  padding: 1.2rem 1.3rem;
+  background: var(--ptg-cream);
+  border-radius: 1.1rem;
+  box-shadow: 0 0.5rem 1.2rem var(--ptg-shadow);
+  transition: transform 140ms ease, box-shadow 140ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.7rem 1.5rem var(--ptg-shadow);
+  }
+}
+
+.card__title {
+  margin: 0;
+  color: var(--ptg-ink);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.card__description {
+  margin: 0;
+  color: rgba(58, 44, 51, 0.75);
+  line-height: 1.4;
+}
+
+.card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: auto;
+  padding-top: 0.4rem;
+}
+
+.card__cost {
+  color: var(--ptg-rose);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}

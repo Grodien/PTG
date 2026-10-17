@@ -1,0 +1,78 @@
+<section class="checkout">
+  @if (state() === 'success') {
+    <!-- Erfolgsbestätigung (Req 4.4) -->
+    <div class="checkout__confirmation" role="status">
+      <span class="checkout__confirmation-emoji" aria-hidden="true">💌</span>
+      <h2 class="checkout__confirmation-title">Merci viu mau!</h2>
+      <p class="checkout__confirmation-text">
+        Dini Bstellig isch unterwägs zu dim Schatz. Är weiss jetzt Bscheid – gniess
+        d Wartezyt! 😊
+      </p>
+    </div>
+  } @else {
+    <h2 class="checkout__title">Zämefassig vo dire Bstellig</h2>
+
+    @if (lines().length > 0) {
+      <ul class="checkout__lines">
+        @for (line of lines(); track line.item.id) {
+          <li class="checkout__line">
+            <span class="checkout__line-qty">{{ line.quantity }}×</span>
+            <span class="checkout__line-title">{{ line.item.title }}</span>
+            <span class="checkout__line-cost">
+              {{ line.item.cost * line.quantity | muentschi }}
+            </span>
+          </li>
+        }
+      </ul>
+
+      <p class="checkout__total">
+        <span>Total</span>
+        <strong>{{ total() | muentschi }}</strong>
+      </p>
+    } @else {
+      <p class="checkout__empty">
+        Dr Warächorb isch no läär – legg zersch öppis Schöns inä. 🫶
+      </p>
+    }
+
+    <!-- Optionales Notizfeld (Req 4.1) -->
+    <label class="checkout__note" for="checkout-note">
+      <span class="checkout__note-label">Es Wörtli derzue? (fakultativ)</span>
+      <textarea
+        id="checkout-note"
+        class="checkout__note-input"
+        rows="3"
+        placeholder="z. B. «Ha di gärn» oder e chlini Wunsch-Notiz …"
+        [value]="note()"
+        (input)="onNoteInput($event)"
+        [disabled]="state() === 'submitting'"
+      ></textarea>
+    </label>
+
+    @if (state() === 'error') {
+      <!-- Fehlermeldung, Warenkorb bleibt unverändert (Req 4.6) -->
+      <p class="checkout__error" role="alert">
+        Oha, öppis isch schiefgloffe bim Abschicke. Dyni Bstellig isch no da –
+        probier s grad nomau. 🙏
+      </p>
+    }
+
+    <div class="checkout__actions">
+      @if (state() === 'error') {
+        <ptg-button type="button" (click)="retry()">Nomau probiere</ptg-button>
+      } @else {
+        <ptg-button
+          type="button"
+          [disabled]="!canCheckout() || state() === 'submitting'"
+          (click)="submit()"
+        >
+          @if (state() === 'submitting') {
+            Wird abgschickt …
+          } @else {
+            Bstellig abschicke
+          }
+        </ptg-button>
+      }
+    </div>
+  }
+</section>
