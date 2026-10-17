@@ -66,3 +66,33 @@
   max-width: 960px;
   margin-inline: auto;
 }
+
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 1.5rem 1.25rem 2rem;
+  margin-top: 1rem;
+  color: rgba(74, 44, 42, 0.55);
+  font-size: 0.85rem;
+
+  &__note {
+    opacity: 0.9;
+  }
+
+  &__admin {
+    color: rgba(74, 44, 42, 0.45);
+    text-decoration: none;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    transition: color 0.2s ease, background 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: #c23b60;
+      background: rgba(232, 87, 125, 0.1);
+    }
+  }
+}
