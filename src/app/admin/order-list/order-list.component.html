@@ -9,43 +9,90 @@
 
   @if (orders(); as list) {
     @if (list.length > 0) {
-      <ul class="orders__list">
-        @for (order of list; track order.id) {
-          <li class="order">
-            <div class="order__top">
-              <span class="order__date">
-                {{ order.createdAt?.toDate() | date: 'EEEE, d. MMMM y, HH:mm' }}
-              </span>
-              <span class="order__total">{{ order.total | muentschi }}</span>
-            </div>
 
-            <ul class="order__lines">
-              @for (line of order.lines; track line.itemId) {
-                <li class="order__line">
-                  <span class="order__qty">{{ line.quantity }}×</span>
-                  <span class="order__line-title">{{ line.title }}</span>
-                  <span class="order__line-cost">{{ line.cost | muentschi }}</span>
-                </li>
+      <!-- Offeni Bstellige -->
+      <h2 class="orders__section">Offe ({{ openOrders().length }})</h2>
+      @if (openOrders().length > 0) {
+        <ul class="orders__list">
+          @for (order of openOrders(); track order.id) {
+            <li class="order">
+              <div class="order__top">
+                <span class="order__date">
+                  {{ order.createdAt?.toDate() | date: 'EEEE, d. MMMM y, HH:mm' }}
+                </span>
+                <span class="order__total">{{ order.total | muentschi }}</span>
+              </div>
+
+              <ul class="order__lines">
+                @for (line of order.lines; track line.itemId) {
+                  <li class="order__line">
+                    <span class="order__qty">{{ line.quantity }}×</span>
+                    <span class="order__line-title">{{ line.title }}</span>
+                    <span class="order__line-cost">{{ line.cost | muentschi }}</span>
+                  </li>
+                }
+              </ul>
+
+              @if (order.note) {
+                <p class="order__note">
+                  <span class="order__note-label">Notiz:</span> {{ order.note }}
+                </p>
               }
-            </ul>
 
-            @if (order.note) {
-              <p class="order__note">
-                <span class="order__note-label">Notiz:</span> {{ order.note }}
-              </p>
-            }
+              <div class="order__actions">
+                <ptg-button (click)="toggleDone(order)">✓ Erledigt</ptg-button>
+              </div>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="orders__empty">Momentan alles erledigt – super! 🎉</p>
+      }
 
-            <div class="order__status">
-              <span class="badge" [class.badge--ok]="order.pushSent" [class.badge--off]="!order.pushSent">
-                {{ order.pushSent ? '🔔 Push gschickt' : '🔕 kei Push' }}
-              </span>
-              <span class="badge" [class.badge--ok]="order.emailSent" [class.badge--off]="!order.emailSent">
-                {{ order.emailSent ? '✉️ E-Mail gschickt' : '✉️ kei E-Mail' }}
-              </span>
-            </div>
-          </li>
-        }
-      </ul>
+      <!-- Erledigti Bstellige -->
+      @if (doneOrders().length > 0) {
+        <h2 class="orders__section orders__section--done">
+          Erledigt ({{ doneOrders().length }})
+        </h2>
+        <ul class="orders__list">
+          @for (order of doneOrders(); track order.id) {
+            <li class="order order--done">
+              <div class="order__top">
+                <span class="order__date">
+                  {{ order.createdAt?.toDate() | date: 'd. MMM y, HH:mm' }}
+                  @if (order.doneAt) {
+                    · erledigt {{ order.doneAt.toDate() | date: 'd. MMM, HH:mm' }}
+                  }
+                </span>
+                <span class="order__total">{{ order.total | muentschi }}</span>
+              </div>
+
+              <ul class="order__lines">
+                @for (line of order.lines; track line.itemId) {
+                  <li class="order__line">
+                    <span class="order__qty">{{ line.quantity }}×</span>
+                    <span class="order__line-title">{{ line.title }}</span>
+                    <span class="order__line-cost">{{ line.cost | muentschi }}</span>
+                  </li>
+                }
+              </ul>
+
+              @if (order.note) {
+                <p class="order__note">
+                  <span class="order__note-label">Notiz:</span> {{ order.note }}
+                </p>
+              }
+
+              <div class="order__actions">
+                <ptg-button variant="ghost" (click)="toggleDone(order)">
+                  ↩︎ Wieder öffne
+                </ptg-button>
+              </div>
+            </li>
+          }
+        </ul>
+      }
+
     } @else {
       <p class="orders__empty">
         No kener Bstellige da. Sobald öpper öppis bstellt, gseesch es hie. 🌸

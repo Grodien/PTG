@@ -18,16 +18,30 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
-    // Bestellungen: öffentlich anlegen, nur Admin lesen; kein Update/Delete vom Client
+    // Bestellungen: öffentlich anlegen, nur Admin lesen. Der Admin darf per
+    // Client ausschliesslich den Erledigt-Status (`done`/`doneAt`) setzen –
+    // die bestellungs-relevanten Kernfelder bleiben unveränderbar. Löschen
+    // bleibt gesperrt; Status-Felder von der Cloud Function (Admin SDK) sind
+    // davon unberührt.
     match /orders/{id} {
       allow create: if isValidOrder(request.resource.data);
       allow read:   if isAdmin();
-      allow update, delete: if false; // nur Backend (Admin SDK) ändert Status
+      allow update: if isAdmin() && isOnlyDoneChange();
+      allow delete: if false;
     }
 
     // Push-Token: nur Admin
     match /pushTokens/{id} {
       allow read, write: if isAdmin();
+    }
+
+    // Erlaubt dem Admin nur das Ändern von `done`/`doneAt`; alle anderen
+    // Felder müssen gegenüber dem bestehenden Dokument unverändert bleiben.
+    function isOnlyDoneChange() {
+      let before = resource.data;
+      let after = request.resource.data;
+      return after.diff(before).affectedKeys().hasOnly(['done', 'doneAt'])
+        && (after.done is bool);
     }
 
     function isValidOrder(d) {

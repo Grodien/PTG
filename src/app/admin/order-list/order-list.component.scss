@@ -157,3 +157,29 @@
   background: rgba(58, 44, 51, 0.08);
   color: var(--ptg-ink-soft);
 }
+
+.orders__section {
+  margin: 1.75rem 0 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ptg-ink);
+}
+
+.orders__section--done {
+  color: var(--ptg-ink-soft);
+}
+
+.order__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.9rem;
+}
+
+.order--done {
+  opacity: 0.68;
+  background: var(--ptg-peach-soft);
+}
+
+.order--done .order__total {
+  color: var(--ptg-ink-soft);
+}

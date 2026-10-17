@@ -42,4 +42,8 @@ export interface Order {
   pushSent?: boolean;
   /** Vom Backend gesetzter Best-Effort-Status: E-Mail wurde verschickt. */
   emailSent?: boolean;
+  /** Vom Admin gesetzt: Bestellung wurde als erledigt markiert. */
+  done?: boolean;
+  /** Zeitpunkt, zu dem die Bestellung als erledigt markiert wurde. */
+  doneAt?: Timestamp | null;
 }

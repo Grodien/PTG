@@ -4,9 +4,11 @@ import {
   addDoc,
   collection,
   collectionData,
+  doc,
   orderBy,
   query,
   serverTimestamp,
+  updateDoc,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -61,5 +63,22 @@ export class OrderService {
     });
 
     return ref.id;
+  }
+
+  /**
+   * Markiert eine Bestellung als erledigt bzw. wieder als offen.
+   *
+   * Setzt nur die Felder `done` und `doneAt` – die Security Rules lassen
+   * ausschliesslich diese Änderung durch den Admin zu.
+   *
+   * @param id Dokument-ID der Bestellung.
+   * @param done `true` = erledigt, `false` = wieder offen.
+   */
+  setDone(id: string, done: boolean): Promise<void> {
+    const ref = doc(this.firestore, 'orders', id);
+    return updateDoc(ref, {
+      done,
+      doneAt: done ? serverTimestamp() : null,
+    });
   }
 }
