@@ -59,7 +59,14 @@ export const routes: Routes = [
         (m) => m.AdminShellComponent,
       ),
     children: [
-      { path: '', redirectTo: 'kategorien', pathMatch: 'full' },
+      { path: '', redirectTo: 'bstellige', pathMatch: 'full' },
+      {
+        path: 'bstellige',
+        loadComponent: () =>
+          import('./admin/order-list/order-list.component').then(
+            (m) => m.OrderListComponent,
+          ),
+      },
       {
         path: 'kategorien',
         loadComponent: () =>

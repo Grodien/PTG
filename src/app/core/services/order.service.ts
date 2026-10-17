@@ -3,18 +3,22 @@ import {
   Firestore,
   addDoc,
   collection,
+  collectionData,
+  orderBy,
+  query,
   serverTimestamp,
 } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
-import { OrderDraft } from '../models';
+import { Order, OrderDraft } from '../models';
 
 /**
- * Persistiert Bestellungen in der Firestore-Collection `orders`.
+ * Persistiert und liest Bestellungen in der Firestore-Collection `orders`.
  *
- * Nutzt die modulare AngularFire-API. Der Service ergänzt den vom
+ * Nutzt die modulare AngularFire-API. Beim Anlegen ergänzt der Service den vom
  * {@link CartService} erzeugten {@link OrderDraft} um das vom Server gesetzte
  * Feld `createdAt`. Die Felder `pushSent`/`emailSent` werden bewusst **nicht**
- * gesetzt – diese schreibt ausschliesslich die Cloud Function (Admin SDK).
+ * hier gesetzt – diese schreibt ausschliesslich die Cloud Function (Admin SDK).
  */
 @Injectable({ providedIn: 'root' })
 export class OrderService {
@@ -22,6 +26,17 @@ export class OrderService {
 
   /** Referenz auf die `orders`-Collection. */
   private readonly ordersRef = collection(this.firestore, 'orders');
+
+  /**
+   * Live-Stream aller Bestellungen, neueste zuerst (`createdAt` absteigend).
+   *
+   * Nur der Administrator darf gemäss den Security Rules lesen; die Admin-
+   * Bestellübersicht konsumiert diesen Stream.
+   */
+  readonly orders$: Observable<Order[]> = collectionData(
+    query(this.ordersRef, orderBy('createdAt', 'desc')),
+    { idField: 'id' },
+  ) as Observable<Order[]>;
 
   /**
    * Speichert eine Bestellung aus dem übergebenen {@link OrderDraft}.
